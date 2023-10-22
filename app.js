@@ -25,8 +25,9 @@ app.get('/', (req, res) => {
     //const objeto = JSON.stringify(datos);
     //console.log(objeto.id);
     console.log(JSON.stringify(tareas));
+   
     
-})
+}) 
 
 
 app.listen(port, () => {
