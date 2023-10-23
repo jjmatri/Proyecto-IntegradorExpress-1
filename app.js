@@ -1,11 +1,17 @@
 const express = require('express');
+const booksRouter = require('./list-view-router')
+const ordersRouter = require('./list-edit-router')
+
 /*module.exports = app;*/
 
 
 const app = express();
 const port = 1000;
 
+app.use('/books', booksRouter)
+app.use('/orders', ordersRouter)
 			
+
 
 app.get('/', (req, res) => {
     res.send('Hola mundo')
@@ -14,7 +20,7 @@ app.get('/', (req, res) => {
     const tareas =[ {
         "id":"123456",
         "isCompleted":false,
-         "description":"Walk the dog",
+         "description":"Walk the dog"
     },
     {
         "id":"1234",
@@ -25,7 +31,7 @@ app.get('/', (req, res) => {
     //const objeto = JSON.stringify(datos);
     //console.log(objeto.id);
     console.log(JSON.stringify(tareas));
-   
+    
     
 }) 
 
