@@ -1,4 +1,6 @@
 const express = require('express');
+const { midd} = require('./middlewares')
+
 const booksRouter = require('./list-view-router')
 const ordersRouter = require('./list-edit-router')
 
@@ -8,9 +10,22 @@ const ordersRouter = require('./list-edit-router')
 const app = express();
 const port = 1000;
 
-app.use('/books', booksRouter)
-app.use('/orders', ordersRouter)
+app.use('/completed-tasks', booksRouter)
+app.use('/tasks', ordersRouter)
+app.use(midd)
 			
+/*app.use( (req,res,next) => {
+    if(req.method!="GET" &&  req.method!="POST" && req.method!="DELETE" && req.method!="PUT" ){
+  
+   
+   return res.status(400).send("Invalid http request method");
+  
+  }
+
+  next();
+  });
+  */
+
 
 
 app.get('/', (req, res) => {

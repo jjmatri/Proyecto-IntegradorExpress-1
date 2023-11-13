@@ -24,8 +24,22 @@ const tareas =
 
 ]
 
+/*function midd(req, res, next) {
+   
+    next()
+}*/
+function middError(err,req, res, next) {
+ console.log(err)
+  res.status(500).send('hay error')
+    next()
+}
 
 
+/*router.use((err, req, res, next) =>{
+    console.log(err)
+    res.status(500).send('Something broke!');
+  });
+*/
 
 function Tareas2(id,estado,description){
     this.id=id;
@@ -36,14 +50,16 @@ function Tareas2(id,estado,description){
 }
 
 // ruta raiz - tipo post - modulo libros
-router.post('/', (req, res) => {
+router.post('/',middError, (req, res) => {
     res.status(200).send('Hola desde ruta para creacion de libros')
 })
 var  ta=[];
 var  ta2=[];
 
-router.get('/', (req, res) => {
+router.get('/',middError, (req, res) => {
 
+    
+    
     for (let i = 0; i < tareas.length; i++) {
         //console.log(tareas[i]);
 
@@ -68,10 +84,11 @@ router.get('/:id,:id2', (req, res) => {
     res.status(200).send('Hola de un unico libros'+clientId+''+clientId2)
 })*/
 
-router.get('/:id', (req, res) => {
+router.get('/:id',middError, (req, res) => {
     for (let i = 0; i < tareas.length; i++) {
         //console.log(tareas[i]);
-
+        
+    
         if (tareas[i].id == tareas[i].id && tareas[i].estado == false) {
             
            
