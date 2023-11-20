@@ -52,11 +52,11 @@ router.use( (req,res,next) => {
           }
 
           
-              if (req.method === 'POST' && (!req.body.id || !req.body.description || !req.body.description )) {
+              if (req.method === 'POST' && (!req.body.id || !req.body.description || !req.body.estado)) {
       // Solicitudes PUT con información no válida o atributos faltantes
       return res.status(400).json({ error: 'Información no válida o atributos faltantes para actualizar tareas' });
     }
-    if (req.method === 'PUT' && (!req.body.id || !req.body.description || !req.body.description )) {
+    if (req.method === 'PUT' && (!req.body.id || !req.body.description || !req.body.estado )) {
         // Solicitudes PUT con información no válida o atributos faltantes
         return res.status(400).json({ error: 'Información no válida o atributos faltantes para actualizar tareas' });
       }     
