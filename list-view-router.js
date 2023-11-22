@@ -1,33 +1,9 @@
 const express = require('express');
 
+const DB=require('./DB')
 // Crear el router que va a encapsular las rutas - Books
 const router = express.Router();
-const tareas =
-[
-     {
-    "id":12,
-    "estado":false,
-     "description":"Walk the dog"
-},
-{
-    "id":13,
-    "estado":true,
-    "description":"Walk the cat"
-    
-},
-{
-    "id":14,
-    "estado":true,
-    "description":"Walk the pes"
-    
-},
 
-]
-
-/*function midd(req, res, next) {
-   
-    next()
-}*/
 function middError(err,req, res, next) {
  console.log(err)
   res.status(500).send('hay error')
@@ -56,25 +32,25 @@ router.post('/',middError, (req, res) => {
 var  ta=[];
 var  ta2=[];
 
+//tareas completas 
 router.get('/',middError, (req, res) => {
 
+    const estado = req.body.estado;
     
-    
-    for (let i = 0; i < tareas.length; i++) {
+    for (let i = 0; i < DB.length; i++) {
         //console.log(tareas[i]);
 
-        if (tareas[i].id == tareas[i].id && tareas[i].estado == true ) {
+        if (DB[i].id == DB[i].id && DB[i].estado == estado ) {
             
            
-            var myFather = new Tareas2(tareas[i].id,tareas[i].estado,tareas[i].description);
-            ta.push(myFather);
+            var mytarea = new Tareas2(DB[i].id,DB[i].estado,DB[i].description);
+            ta.push(mytarea);
         } 
           
      
         
     }
-    res.status(200).send(ta)
-    
+    res.json(ta)    
 })
 /*en postman se pone asi http://localhost:1000/books/9,10
 router.get('/:id,:id2', (req, res) => {
@@ -84,22 +60,27 @@ router.get('/:id,:id2', (req, res) => {
     res.status(200).send('Hola de un unico libros'+clientId+''+clientId2)
 })*/
 
-router.get('/:id',middError, (req, res) => {
-    for (let i = 0; i < tareas.length; i++) {
+
+//tareas  incompletas
+router.get('/:estado',middError, (req, res) => {
+
+    const estado = req.body.estado;
+    
+    for (let i = 0; i < DB.length; i++) {
         //console.log(tareas[i]);
         
     
-        if (tareas[i].id == tareas[i].id && tareas[i].estado == false) {
+        if (DB[i].id == DB[i].id && DB[i].estado == estado ) {
             
            
-            var myFather = new Tareas2(tareas[i].id,tareas[i].estado,tareas[i].description);
+            var myFather = new Tareas2(DB[i].id,DB[i].estado,DB[i].description);
             ta2.push(myFather);
         } 
           
      
         
     }
-    res.status(200).send(ta2)
+    res.json(ta2)
     })
 router.put('/', (req, res) => {
     res.status(200).send('Hola desde ruta para edicion de libros')

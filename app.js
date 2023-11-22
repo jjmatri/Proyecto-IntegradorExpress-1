@@ -1,15 +1,15 @@
 const express = require("express");
 // const { midd } = require("./middlewares");
-// const booksRouter = require("./list-view-router");
+ const booksRouter = require("./list-view-router");
  const ordersRouter = require("./list-edit-router");
-// require("dotenv").config();
-const jwt = require("jsonwebtoken");
-// const PORT = 3000;
-// const LLAVE_SECRETA = 'secret';
+
+ const jwt = require("jsonwebtoken");
+
 const app = express();
+
 const port = 1000;
 app.use(express.json());
-// app.use("/completed-tasks", booksRouter);
+ app.use("/completed-tasks", booksRouter);
  app.use("/tasks", ordersRouter);
 // app.use(midd);
 //DataBase Simulation
