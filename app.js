@@ -2,10 +2,10 @@ const express = require("express");
 // const { midd } = require("./middlewares");
 // const booksRouter = require("./list-view-router");
  const ordersRouter = require("./list-edit-router");
-// require("dotenv").config();
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 // const PORT = 3000;
-// const LLAVE_SECRETA = 'secret';
+ const LLAVE_SECRETA = 'secret';
 const app = express();
 const port = 1000;
 app.use(express.json());
@@ -22,7 +22,7 @@ function authMiddleware(req, res, next) {
   if (!token) {
     res.status(401).send("Debes porporcionar un token");
   }
-  jwt.verify(token, "secret key", (err,decoded) => {
+  jwt.verify(token, LLAVE_SECRETA, (err,decoded) => {
     console.log(decoded)
     req.rol=decoded.rol;
     if(err){
@@ -56,7 +56,7 @@ app.post("/login", (req, res) => {
     res.status(401).send({ error: "Invalid user name or password" });
   } else {
     const payload = userDb[index];
-    const token = jwt.sign(payload, "secret key", { expiresIn: "5m" });
+    const token = jwt.sign(payload, LLAVE_SECRETA, { expiresIn: "5m" });
     res.json({ token });
     //res.status(200).header("Authorization",token).json({token});
   }
