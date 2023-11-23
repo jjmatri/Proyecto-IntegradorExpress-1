@@ -6,7 +6,7 @@ const express = require("express");
  const jwt = require("jsonwebtoken");
 
 const app = express();
-const LLAVE_SECRETA = 'secret';
+const LLAVE_SECRETA = process.env.LLAVE_SECRETA;
 const port = 1000;
 app.use(express.json());
  app.use("/completed-tasks", booksRouter);
