@@ -2,6 +2,9 @@
 Es una Aplicación que le permite al usuario llevar un listado de actividades para realizar durante
 el día y cuales le falto por hacer.
 
+Además, tiene una validación de usuario si el correcto el permite el acceso utilizar la aplicación por cierto tiempo después de ese tiempo el usuario tiene que volver a registrarse para seguir utilizándola esto le mas seguridad a la aplicación.
+
+
 ¿Cuáles son las funcionalidades más importantes y porque los usuarios las usarían?
  las funcionalidades más importantes que le permite al usuario son:
 *Crear una nueva tarea
